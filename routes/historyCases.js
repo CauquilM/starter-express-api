@@ -21,6 +21,7 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
     console.log(req.body);
     const temporarCase = new HistoryCases({
+        case_id: req.body.case_id,
         type: req.body.type,
         charge: req.body.charge,
         description: req.body.description,
@@ -28,9 +29,9 @@ router.post('/', async (req, res) => {
         suspect_age: req.body.suspect_age,
         criminalRecord: req.body.criminalRecord,
         verdict: req.body.verdict,
-        prisonSentence: req.body.prisonSentence,
-        probationSentence: req.body.probationSentence,
-        fineSentence: req.body.fineSentence
+        prison: req.body.prison,
+        probation: req.body.probation,
+        fine: req.body.fine
     })
     
     try {

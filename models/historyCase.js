@@ -2,8 +2,8 @@ const mongoose = require("mongoose");
 
 const historyCaseSchema = new mongoose.Schema({
     case_id:{
-      type: Number,
-      default: Math.floor(Math.random() * (99999 - 1000 + 1)) + 1000
+      type: String,
+      required: true
     },
     type: {
       type: String,
@@ -33,13 +33,13 @@ const historyCaseSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    prisonSentence: {
+    prison: {
         type: String
     },
-    probationSentence: {
+    probation: {
         type: String
     },
-    fineSentence: {
+    fine: {
         type: String
     }
 })
