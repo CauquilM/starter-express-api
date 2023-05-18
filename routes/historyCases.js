@@ -23,13 +23,13 @@ router.post('/', async (req, res) => {
     const temporarCase = new HistoryCases({
         type: req.body.type,
         charge: req.body.charge,
-        description: req.body.description
+        description: req.body.description,
         suspect_name: req.body.suspect_name,
         suspect_age: req.body.suspect_age,
-        criminalRecord: req.body.criminalRecord
+        criminalRecord: req.body.criminalRecord,
         verdict: req.body.verdict,
         prisonSentence: req.body.prisonSentence,
-        probationSentence: req.body.probationSentence
+        probationSentence: req.body.probationSentence,
         fineSentence: req.body.fineSentence
     })
     
