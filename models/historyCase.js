@@ -1,7 +1,23 @@
 const mongoose = require("mongoose");
 
 const historyCaseSchema = new mongoose.Schema({
+    type: {
+      type: String,
+      required: true
+    },
     charge: {
+        type: String,
+        required: true
+    },
+    description: {
+        type: String,
+        required: true
+    },
+    suspect_name: {
+        type: String,
+        required: true
+    },
+    suspect_age: {
         type: String,
         required: true
     },
@@ -9,20 +25,21 @@ const historyCaseSchema = new mongoose.Schema({
         type: Array,
         required: true
     },
-    description: {
+    verdict: {
         type: String,
         required: true
     },
-    evidences: {
-        type: Array,
+    prisonSentence: {
+        type: String,
         required: true
     },
-    suspect: {
-        type: Object,
+    probationSentence: {
+        type: String,
         required: true
     },
-    verdict: {
-        type: String
+    fineSentence: {
+        type: String,
+        required: true
     }
 })
 
