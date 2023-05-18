@@ -34,16 +34,13 @@ const historyCaseSchema = new mongoose.Schema({
         required: true
     },
     prisonSentence: {
-        type: String,
-        required: true
+        type: String
     },
     probationSentence: {
-        type: String,
-        required: true
+        type: String
     },
     fineSentence: {
-        type: String,
-        required: true
+        type: String
     }
 })
 
