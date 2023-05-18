@@ -11,11 +11,6 @@ router.get('/', async (req, res) => {
     catch(err){
         res.send({message: err.message})
     }
-    /*res.send([
-        {age: 40, first_name: 'Dickerson', last_name: 'Macdonald'},
-        {age: 15, first_name: 'Shadow', last_name: 'Poupoune'},
-        {age: 22, first_name: 'Louis', last_name: 'XVI'}
-    ])*/
 })
 
 router.post('/', async (req, res) => {
@@ -43,6 +38,24 @@ router.post('/', async (req, res) => {
         res.status(400);
         res.send("fail");
     }
+})
+
+router.delete('/', async (req, res) => {
+   try {
+       HistoryCases.deleteMany({})
+           .then((response) => {
+               console.log(response);
+           })
+           .catch((e) => {
+               console.log(e);
+           });
+       res.status(200);
+       res.send(res.body);
+   }
+   catch (e) {
+       res.status(400);
+       res.send("fail");
+   }
 })
 
 
