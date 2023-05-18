@@ -19,19 +19,20 @@ router.get('/', async (req, res) => {
 })
 
 router.post('/', async (req, res) => {
+    console.log(req.body);
     const temporarCase = new HistoryCases({
         age: req.body.age,
-        first_name: req.body.first_name,
-        last_name: req.body.last_name
+        name: req.body.name
     })
     
     try {
         const newCase = await temporarCase.save();
-        res.json(newCase);
+        res.status(200);
+        res.send(newCase);
     }
     catch (e) {
         res.status(400);
-        console.log(req)
+        res.send("fail");
     }
 })
 

@@ -17,4 +17,4 @@ const routes = require("./routes/historyCases");
 
 app.use("/history", routes);
 
-app.listen(process.env.PORT || 3000)
+app.listen(process.env.PORT || 3000);
