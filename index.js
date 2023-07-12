@@ -13,8 +13,10 @@ mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser: true});
 app.use(cors());
 app.use(bodyParser.json());
 
-const routes = require("./routes/historyCases");
+const historyCases = require("./routes/historyCases");
+const ideas = require("./routes/ideas");
 
-app.use("/history", routes);
+app.use("/history", historyCases);
+app.use("/ideas", ideas);
 
 app.listen(process.env.PORT || 3000);
