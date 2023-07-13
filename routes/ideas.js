@@ -16,7 +16,8 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
     console.log(req.body);
     const temporarIdea = new Idea({
-        idea_text: req.body.idea_text
+        idea_text: req.body.idea_text,
+        type: req.body.type
     })
 
     try {
