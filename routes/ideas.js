@@ -30,17 +30,20 @@ router.post('/', async (req, res) => {
     }
 })
 
-router.delete('/', async (req, res) => {
+router.delete('/:id', async (req, res) => {
     try {
-        Idea.deleteMany({})
+        console.log("req", req.params.id);
+        Idea.findByIdAndDelete(req.params.id)
             .then((response) => {
-                console.log(response);
+                console.log("res", response);
+                res.status(200);
+                res.send(res.body);
             })
             .catch((e) => {
+                res.status(401);
+                res.send(res.body);
                 console.log(e);
             });
-        res.status(200);
-        res.send(res.body);
     }
     catch (e) {
         res.status(400);
