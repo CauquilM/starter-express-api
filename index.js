@@ -15,8 +15,10 @@ app.use(bodyParser.json());
 
 const historyCases = require("./routes/historyCases");
 const ideas = require("./routes/ideas");
+const laws = require("./routes/penal_code");
 
 app.use("/history", historyCases);
 app.use("/ideas", ideas);
+app.use("/laws", laws);
 
 app.listen(process.env.PORT || 3000);
