@@ -7,8 +7,7 @@ router.get('/', async (req, res) => {
     try {
         const prisons = await Prisons.find();
         res.json(prisons);
-    }
-    catch(err){
+    } catch (err) {
         res.send({message: err.message})
     }
 })
@@ -18,6 +17,7 @@ router.post('/', async (req, res) => {
     const temporarPrison = new Prisons({
         prison: req.body.prison,
         prison_name: req.body.prison_name,
+        prison_type: req.body.prison_type,
         max_size: req.body.max_size
     })
 
@@ -25,31 +25,40 @@ router.post('/', async (req, res) => {
         const newPrison = await temporarPrison.save();
         res.status(200);
         res.send(newPrison);
-    }
-    catch (e) {
+    } catch (e) {
         res.status(400);
         res.send("fail");
     }
 })
+router.put('/', async (req, res) => {
+    try {
+        console.log(`prison: ${req.body.prison_name}`);
+        await Prisons.updateOne(
+            {prison_name: req.body.prison_name},
+            {$set: {prison: req.body.inmates}}
+        );
+        console.log("Prison updated successfully");
+        res.status(200).send("Success to fill prison");
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Internal Server Error");
+    }
+});
 
-/*router.delete('/', async (req, res) => {
-   try {
-       HistoryCases.deleteMany({})
-           .then((response) => {
-               console.log(response);
-           })
-           .catch((e) => {
-               console.log(e);
-           });
-       res.status(200);
-       res.send(res.body);
-   }
-   catch (e) {
-       res.status(400);
-       res.send("fail");
-   }
-})*/
-
+router.put('/addInmate', async (req, res) => {
+    try {
+        console.log(`prison: ${req.body.prison_name}`);
+        await Prisons.updateOne(
+            {prison_name: req.body.prison_name},
+            {$push: {prison: req.body.inmate}}
+        );
+        console.log("Prison updated successfully");
+        res.status(200).send("Success to fill prison");
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Internal Server Error");
+    }
+});
 
 
 module.exports = router;

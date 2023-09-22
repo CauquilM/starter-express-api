@@ -9,6 +9,10 @@ const prisonSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    prison_type: {
+      type: String,
+      required: true
+    },
     max_size: {
         type: Number,
         required: true
