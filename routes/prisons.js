@@ -60,5 +60,20 @@ router.put('/addInmate', async (req, res) => {
     }
 });
 
+router.put('/empty', async (req, res) => {
+    try {
+        console.log(`prison: ${req.body.prison_name}`);
+        await Prisons.updateOne(
+            {prison_name: req.body.prison_name},
+            {$set: {prison: []}}
+        );
+        console.log("Prison updated successfully");
+        res.status(200).send("Success to fill prison");
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Internal Server Error");
+    }
+});
+
 
 module.exports = router;
