@@ -65,10 +65,26 @@ router.put('/empty', async (req, res) => {
         console.log(`prison: ${req.body.prison_name}`);
         await Prisons.updateOne(
             {prison_name: req.body.prison_name},
-            {$set: {prison: []}}
+            {$: {prison: []}}
         );
         console.log("Prison updated successfully");
         res.status(200).send("Success to fill prison");
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Internal Server Error");
+    }
+});
+
+router.put('/kill', async (req, res) => {
+    try {
+        const prisonName = req.body.prison_name;
+
+        const updateResult = await Prisons.updateOne(
+            {prison_name: prisonName},
+            {$pull: {prison: {name: req.body.inmate_name}}}
+        );
+        console.log("Inmate removed from prison successfully");
+        res.status(200).send("Inmate removed from prison successfully");
     } catch (err) {
         console.error(err);
         res.status(500).send("Internal Server Error");
