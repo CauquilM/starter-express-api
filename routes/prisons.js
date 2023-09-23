@@ -60,12 +60,12 @@ router.put('/addInmate', async (req, res) => {
     }
 });
 
-router.put('/empty', async (req, res) => {
+router.put('/emptyPrison', async (req, res) => {
     try {
         console.log(`prison: ${req.body.prison_name}`);
         await Prisons.updateOne(
             {prison_name: req.body.prison_name},
-            {$: {prison: []}}
+            {$set: {prison: []}}
         );
         console.log("Prison updated successfully");
         res.status(200).send("Success to fill prison");
@@ -75,13 +75,16 @@ router.put('/empty', async (req, res) => {
     }
 });
 
-router.put('/kill', async (req, res) => {
+router.put('/deathPenalty', async (req, res) => {
     try {
         const prisonName = req.body.prison_name;
+        const inmateName = req.body.inmate_name;
+
+        console.log(prisonName + ' / ' + inmateName);
 
         const updateResult = await Prisons.updateOne(
-            {prison_name: prisonName},
-            {$pull: {prison: {name: req.body.inmate_name}}}
+            {prison_name: prisonName, "prison.suspect_name": inmateName},
+            {$pull: {prison: {suspect_name: inmateName}}}
         );
         console.log("Inmate removed from prison successfully");
         res.status(200).send("Inmate removed from prison successfully");
