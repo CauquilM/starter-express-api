@@ -86,7 +86,7 @@ router.put('/deathPenalty', async (req, res) => {
             {prison_name: prisonName, "prison.suspect_name": inmateName},
             {$pull: {prison: {suspect_name: inmateName}}}
         );
-        console.log("Inmate removed from prison successfully");
+        console.log("Inmate removed from prison successfull");
         res.status(200).send("Inmate removed from prison successfully");
     } catch (err) {
         console.error(err);
