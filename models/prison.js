@@ -16,6 +16,10 @@ const prisonSchema = new mongoose.Schema({
     max_size: {
         type: Number,
         required: true
+    },
+    date_sentence_updated: {
+        type: String,
+        required: true
     }
 })
 
