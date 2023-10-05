@@ -51,7 +51,7 @@ router.put('/refreshSentences', async (req, res) => {
     let day = currentDate.getDate();
     let month = currentDate.getMonth() + 1; // Note: Month is zero-based, so add 1
     let year = currentDate.getFullYear();
-    let formattedDate = `${day + 1}/${month}/${year}`;
+    let formattedDate = `${day}/${month}/${year}`;
 
     try {
         console.log(`prison: ${req.body.prison_name}`);
