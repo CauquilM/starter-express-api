@@ -23,6 +23,7 @@ router.post('/', async (req, res) => {
         suspect_name: req.body.suspect_name,
         suspect_age: req.body.suspect_age,
         criminalRecord: req.body.criminalRecord,
+        evidences: req.body.evidences,
         verdict: req.body.verdict,
         prison: req.body.prison,
         probation: req.body.probation,

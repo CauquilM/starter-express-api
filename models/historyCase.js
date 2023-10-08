@@ -13,6 +13,10 @@ const historyCaseSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    evidences: {
+        type: Array,
+        required: true
+    },
     description: {
         type: String,
         required: true
