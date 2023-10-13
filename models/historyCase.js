@@ -45,6 +45,10 @@ const historyCaseSchema = new mongoose.Schema({
     },
     fine: {
         type: String
+    },
+    date_judgement: {
+        type: String,
+        required: true
     }
 })
 

@@ -13,7 +13,26 @@ router.get('/', async (req, res) => {
     }
 })
 
+router.post('/appeal', async (req, res) => {
+    console.log(`Just got a GET requst! ${req.body.suspect_name}`)
+    try {
+        const appealCase = await HistoryCases.findOne({
+            suspect_name: req.body.suspect_name
+        });
+        res.json(appealCase);
+    }
+    catch(err){
+        res.send({message: err.message})
+    }
+})
+
 router.post('/', async (req, res) => {
+    let currentDate = new Date();
+    let day = currentDate.getDate();
+    let month = currentDate.getMonth() + 1; // Note: Month is zero-based, so add 1
+    let year = currentDate.getFullYear();
+    let formattedDate = `${day}/${month}/${year}`;
+
     console.log(req.body);
     const temporarCase = new HistoryCases({
         case_id: req.body.case_id,
@@ -27,7 +46,8 @@ router.post('/', async (req, res) => {
         verdict: req.body.verdict,
         prison: req.body.prison,
         probation: req.body.probation,
-        fine: req.body.fine
+        fine: req.body.fine,
+        date_judgement: formattedDate
     })
     
     try {

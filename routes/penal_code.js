@@ -6,7 +6,6 @@ router.get('/', async (req, res) => {
     console.log("Just got a GET requst!")
     try {
         const laws = await Laws.find();
-        console.log(`laws: ${console.log(JSON.stringify(laws))}`);
         res.json(laws);
     }
     catch(err){
