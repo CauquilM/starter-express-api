@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 
 const historyCases = require("./routes/historyCasesRoutes");
 const ideas = require("./routes/ideasRoutes");
-const laws = require("./routes/penalCodeRoutes");
+const laws = require("./routes/lawsRoutes");
 const prisons = require("./routes/prisonsRoutes");
 
 app.use("/history", historyCases);
