@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const lawsSchema = new mongoose.Schema({
-    penal_code: {
+    offenses: {
         type: Object,
         required: true
     }
