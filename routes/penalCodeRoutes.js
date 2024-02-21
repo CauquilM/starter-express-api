@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const Laws = require("../models/laws");
+const Laws = require("../models/lawsModel");
 
 router.get('/', async (req, res) => {
     console.log("Just got a GET requst!")

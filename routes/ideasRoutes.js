@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const Idea = require("../models/idea");
+const Idea = require("../models/ideaModel");
 
 router.get('/', async (req, res) => {
     console.log("Just got a GET requst!")

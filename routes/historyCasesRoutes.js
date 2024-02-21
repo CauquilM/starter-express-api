@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const HistoryCases = require("../models/historyCase");
+const HistoryCasesRoutes = require("../models/historyCaseModel");
 
 router.get('/', async (req, res) => {
     console.log("Just got a GET requst!")
     try {
-        const cases = await HistoryCases.find();
+        const cases = await HistoryCasesRoutes.find();
         res.json(cases);
     }
     catch(err){
@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
 router.post('/appeal', async (req, res) => {
     console.log(`Just got a GET requst! ${req.body.suspect_name}`)
     try {
-        const appealCase = await HistoryCases.findOne({
+        const appealCase = await HistoryCasesRoutes.findOne({
             suspect_name: req.body.suspect_name
         });
         res.json(appealCase);
@@ -34,7 +34,7 @@ router.post('/', async (req, res) => {
     let formattedDate = `${day}/${month}/${year}`;
 
     console.log(req.body);
-    const temporarCase = new HistoryCases({
+    const temporarCase = new HistoryCasesRoutes({
         case_id: req.body.case_id,
         type: req.body.type,
         charge: req.body.charge,
@@ -63,7 +63,7 @@ router.post('/', async (req, res) => {
 
 router.delete('/', async (req, res) => {
    try {
-       HistoryCases.deleteMany({})
+       HistoryCasesRoutes.deleteMany({})
            .then((response) => {
                console.log(response);
            })
