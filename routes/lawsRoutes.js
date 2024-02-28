@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
     console.log(req.body);
     const lawsBook = new Laws({
-        offenses: req.body.offenses,
+        offense: req.body.offense,
     })
     try {
         const law = await lawsBook.save();
