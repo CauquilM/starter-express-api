@@ -13,7 +13,14 @@ mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser: true});
 app.use(cors());
 app.use(bodyParser.json());
 
-app.get('/favicon.ico', (req, res) => res.status(204));
+function ignoreFavicon(req, res, next) {
+    if (req.originalUrl.includes('favicon.ico')) {
+      res.status(204).end()
+    }
+    next();
+  }
+
+  app.use(ignoreFavicon);
 
 const historyCases = require("./routes/historyCasesRoutes");
 const ideas = require("./routes/ideasRoutes");
