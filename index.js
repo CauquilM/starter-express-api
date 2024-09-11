@@ -22,5 +22,6 @@ app.use("/history", historyCases);
 app.use("/ideas", ideas);
 app.use("/laws", laws);
 app.use("/prisons", prisons);
+app.get("/", (req, res) => res.send("coucou test"));
 
 app.listen(process.env.PORT || 3000);
