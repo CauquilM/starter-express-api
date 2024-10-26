@@ -124,6 +124,7 @@ router.put('/emptyPrison', async (req, res) => {
 });
 
 router.put('/deathPenalty', async (req, res) => {
+    console.log("body death: ", req.body);
     try {
         const prisonName = req.body.prison_name;
         const inmateName = req.body.inmate_name;
@@ -135,7 +136,27 @@ router.put('/deathPenalty', async (req, res) => {
             {$pull: {prison: {suspect_name: inmateName}}}
         );
         console.log("Inmate removed from prison successfull");
-        res.status(200).send("Inmate removed from prison successfully");
+        res.status(200).send("Inmat removed from prison successfully");
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Internal Server Error");
+    }
+});
+
+router.put('/appeal', async (req, res) => {
+    try {
+        const prisonName = req.body.prison_name;
+        const inmateName = req.body.inmate_name;
+        const newPrisonTime = req.body.newPrisonTime;
+
+        console.log("body: ", req.body);
+
+        const updateResult = await PrisonsRoutes.updateOne(
+            {prison_name: prisonName, "prison.suspect_name": inmateName},
+            {$set: {"prison.$.prison": `${newPrisonTime} years`}}
+        );
+        console.log("sentence updated");
+        res.status(200).send("sentence updated");
     } catch (err) {
         console.error(err);
         res.status(500).send("Internal Server Error");
